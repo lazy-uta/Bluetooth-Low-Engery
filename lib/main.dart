@@ -13,8 +13,8 @@ class FlutterBlueApp extends StatelessWidget {
   void reqPermission() async {
     await Permission.bluetooth.request();
     await Permission.bluetoothConnect.request();
-    await Permission.location.request();
     await Permission.bluetoothScan.request();
+    await Permission.location.request();
   }
 
   @override
@@ -159,6 +159,7 @@ class DeviceScreen extends StatelessWidget {
 
   List<int> _getRandomBytes() {
     final math = Random();
+
     return [
       math.nextInt(255),
       math.nextInt(255),

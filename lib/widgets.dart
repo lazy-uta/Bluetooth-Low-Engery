@@ -148,6 +148,11 @@ class ServiceTile extends StatelessWidget {
   }
 }
 
+String getNiceHexArray(List<int> bytes) {
+  return '[${bytes.map((i) => i.toRadixString(16).padLeft(2, '0')).join(', ')}]'
+      .toUpperCase();
+}
+
 class CharacteristicTile extends StatelessWidget {
   final BluetoothCharacteristic characteristic;
   final List<DescriptorTile> descriptorTiles;
@@ -188,7 +193,7 @@ class CharacteristicTile extends StatelessWidget {
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(String.fromCharCodes(value!)),
+                    Text(getNiceHexArray(value!)),
                     Text(value.toString()),
                   ],
                 ),
@@ -268,10 +273,10 @@ class DescriptorTile extends StatelessWidget {
         builder: (c, snapshot) {
           return Column(
             children: [
-              Text(String.fromCharCodes(snapshot.data!)),
               Text(
                 snapshot.data.toString(),
               ),
+              Text(getNiceHexArray(snapshot.data!)),
             ],
           );
         },
